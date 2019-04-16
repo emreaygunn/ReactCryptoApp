@@ -40,15 +40,15 @@ class App extends Component {
         else if(suggestions.length > 1) {
             return (
                 <ul>
-                    {suggestions.map((item) => <li>{item.symbol}</li>)}
+                    {suggestions.map((item) => <li key={item.symbol}>{item.symbol}</li>)}
                 </ul>
             )
         }
         else{
             return (
                 <ul>
-                    {suggestions.map((item) => <li> COIN SYMBOL : {item.symbol}</li>)}
-                    {suggestions.map((item) => <li> COIN PRICE : {item.price_usd}$</li>)}
+                    {suggestions.map((item) => <li key={item.symbol}> COIN SYMBOL : {item.symbol}</li>)}
+                    {suggestions.map((item) => <li key={item.price_usd}> COIN PRICE : {item.price_usd}$</li>)}
                 </ul>
             )
         }
