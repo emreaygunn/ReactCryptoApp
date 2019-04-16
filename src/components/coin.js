@@ -27,7 +27,7 @@ class App extends Component {
         let suggestions = [];
         if (value.length > 0) {
             const regex = new RegExp(`^${value}`, 'i');
-            suggestions = this.items.sort().filter(v => regex.test(v));
+            suggestions = this.items.sort().filter(v => regex.test(v.symbol));
         }
         this.setState(() => ({suggestions}));
     }
@@ -37,11 +37,21 @@ class App extends Component {
         if (suggestions.length === 0) {
             return null;
         }
-        return (
-            <ul>
-                {suggestions.map((item) => <li>{item}</li>)}
-            </ul>
-        )
+        else if(suggestions.length > 1) {
+            return (
+                <ul>
+                    {suggestions.map((item) => <li>{item.symbol}</li>)}
+                </ul>
+            )
+        }
+        else{
+            return (
+                <ul>
+                    {suggestions.map((item) => <li> COIN SYMBOL : {item.symbol}</li>)}
+                    {suggestions.map((item) => <li> COIN PRICE : {item.price_usd}$</li>)}
+                </ul>
+            )
+        }
     }
     
       render() {
